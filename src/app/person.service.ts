@@ -7,26 +7,26 @@ import { BaseResponse, PersonResponse, Phone, PhoneResponse, TypePhoneResponse }
   providedIn: 'root'
 })
 export class PersonService {
- 
+  urlApi = "http://localhost:5000/api"
   constructor(private http:HttpClient) { }
 
   getPerson():Observable<PersonResponse>{
-    return this.http.get<PersonResponse>('http://localhost:59730/api/Person');
+    return this.http.get<PersonResponse>(`${this.urlApi}/Person`);
   }
 
   getPhones(id:number):Observable<PhoneResponse>{
-    return this.http.get<PhoneResponse>(`http://localhost:59730/api/PersonPhone/${id}`);
+    return this.http.get<PhoneResponse>(`${this.urlApi}/PersonPhone/${id}`);
   }  
   deletePhone(id:number):Observable<BaseResponse>{
-    return this.http.delete<BaseResponse>(`http://localhost:59730/api/PersonPhone/${id}`);
+    return this.http.delete<BaseResponse>(`${this.urlApi}/PersonPhone/${id}`);
   }
   alteraPhone(phone:Phone):Observable<BaseResponse>{
-    return this.http.put<BaseResponse>(`http://localhost:59730/api/PersonPhone/`, phone);
+    return this.http.put<BaseResponse>(`${this.urlApi}/PersonPhone/`, phone);
   }
   addPhone(phone:Phone):Observable<TypePhoneResponse>{
-    return this.http.post<TypePhoneResponse>(`http://localhost:59730/api/PersonPhone/`,  phone);
+    return this.http.post<TypePhoneResponse>(`${this.urlApi}/PersonPhone/`,  phone);
   }
   getTypePhone():Observable<TypePhoneResponse>{
-    return this.http.get<TypePhoneResponse>(`http://localhost:59730/api/PhoneNumberType/`);
+    return this.http.get<TypePhoneResponse>(`${this.urlApi}/PhoneNumberType/`);
   }
 }
