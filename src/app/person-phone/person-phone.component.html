@@ -1,0 +1,39 @@
+<div class="body-all">
+  <div class="content">
+    <div class="titulo">
+      <h1>Telefones</h1>
+      <span (click)='inserir()'><input class="btn-add" value="Novo telefone" type="button"></span>
+    </div>
+    <div class="table-content">
+
+      <table *ngIf="phones.length > 0" class="table">
+        <thead>
+          <th>Id</th>
+          <th>Telefone</th>
+          <th>Tipo</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of phones; let i = index">
+            <td>{{item.id}}</td>
+            <td>{{item.phoneNumber}}</td>
+            <td>{{item.phoneNumberTypeID}}</td>
+            <td>
+              <div class="td-btn">
+                <span (click)="delete(i)">
+                  <input class="btn-excluir" type="button" value="Excluir">
+                </span>
+                <span (click)="altera(i)">
+                  <input class="btn-alt" type="button" value="Altera">
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="phones.length < 1" class="alert">
+        Nenhum telefone cadastrado.
+      </div>
+    </div>
+    <span (click)='back()'><input class="btn-back" value="Voltar" type="button"></span>
+  </div>
+</div>

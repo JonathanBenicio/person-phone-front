@@ -1,0 +1,41 @@
+<div class="body-all">
+
+  <div class="content">
+    <h1>Telefone</h1>
+
+    <form [formGroup]="formGroup" novalidate (ngSubmit)="submit()">
+
+      <div class="form-group">
+        <label class="center-block">Numero:</label>
+        <input type="phone" formControlName="phoneNumber" class="form-control" minlength="9" />
+      </div>
+      <div *ngIf="formGroup.controls['phoneNumber'].invalid && (formGroup.controls['phoneNumber'].dirty || formGroup.controls['phoneNumber'].touched)" class="alert">
+        <div *ngIf="formGroup.controls['phoneNumber'].errors?.required">
+          campo obrigadorio
+        </div>
+        <div *ngIf="formGroup.controls['phoneNumber'].errors?.minlength">
+          Telefone invalido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="center-block">Tipo:</label>
+        <div>
+          <select formControlName="phoneNumberTypeID" required>
+            <option *ngFor="let item of typePhone" value={{item.phoneNumberTypeID}}>{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="formGroup.controls['phoneNumberTypeID'].invalid && (formGroup.controls['phoneNumberTypeID'].dirty || formGroup.controls['phoneNumberTypeID'].touched)" class="alert">
+        <div *ngIf="formGroup.controls['phoneNumberTypeID'].errors.required">
+          Selecione um tipo de telefone
+        </div>
+      </div>
+      <div class="btn-content">
+
+        <span (click)='back()'><input class="btn-back" value="Voltar" type="button"></span>
+        <button class="btn-tel" type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
